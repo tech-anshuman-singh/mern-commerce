@@ -1,94 +1,162 @@
-# Flipkart - MERN
-Full-Stack Flipkart with Admin Dashboard & Paytm Payment Gateway.
+# MERN Commerce Setup Guide
 
-[Visit Now](https://flipkartweb-mern.vercel.app) 🚀
+This project is a full-stack ecommerce app built with Node.js, Express, MongoDB, and React.
 
-## 🖥️ Tech Stack
-**Frontend:**
+## Prerequisites
 
-![reactjs](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp;
-![react-router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)&nbsp;
-![redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)&nbsp;
-![tailwindcss](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)&nbsp;
-![mui](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)&nbsp;
-![chart-js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)&nbsp;
+Before running the project, make sure you have:
 
-**Backend:**
+- Node.js v18 or v20
+- npm
+- MongoDB running locally or a MongoDB Atlas connection string
+- Git
 
-![nodejs](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)&nbsp;
-![expressjs](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)&nbsp;
-![mongodb](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)&nbsp;
-![jwt](	https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)&nbsp;
+## 1) Install dependencies
 
-**Payment Gateway:**
+From the project root, install the backend dependencies:
 
-![paytm](https://img.shields.io/badge/Paytm-002970?style=for-the-badge&logo=paytm&logoColor=00BAF2)
+```bash
+npm install
+```
 
-**Cloud Storage:** [Cloudinary](https://cloudinary.com/)
+Install the frontend dependencies:
 
-**Mail Service:** [Sendgrid](https://sendgrid.com/)
+```bash
+npm install --prefix frontend
+```
 
-## 🚀 Features
+## 2) Set up environment variables
 
-**User Account Management**
-- Login/Signup: 🚪 Users can create an account or log in to an existing one.
-- Update Profile/Password: 🔐 Users can update their profile information and change their passwords.
-  
-**Password Management**
-- Reset Password Mail: 📧 Utilizing Sendgrid, users can reset their passwords via email.
-  
-**Shopping Cart**
-- Add/Remove Items: 🛒 Users can add items to their shopping cart or remove them as needed.
-- Update Quantities: 🔢 Quantities of items in the cart can be adjusted.
-  
-**Saved Items**
-- Save For Later: 💾 Users can move items from the cart to a "Saved For Later" list or remove them from it.
-  
-**Wishlist**
-- Add/Remove Items: ❤️ Users can add items to their wishlist or remove them from it.
-  
-**Product Browsing**
-- Pagination: 📚 Products are paginated, with 12 products displayed per page by default.
-- Search: 🔍 Users can search for products.
-- Filters: 🎛️ Products can be filtered based on categories, ratings, and price range.
-  
-**Checkout Process**
-- Shipping Info: 🚚 Shipping information is stored in session storage for ease of checkout.
-- Payment Options: 💳 Users can pay through Paytm payment gateway for checkout.
-  
-**Order Management**
-- My Orders: 📦 Users can view their order history with various filters.
-- Order Details: ℹ️ Details of all ordered items are accessible.
-- Order Confirmation: ✉️ Users receive email notifications with comprehensive order details upon placing an order.
-  
-**Product Interaction**
-- Review Products: 🌟 Users can review products.
-  
-**Admin Features**
-- Dashboard: 🖥️ Admins have access to a dedicated dashboard.
-- Order Management: 📊 Admins can update order statuses and delete orders.
-- Product Management: 📝 Admins can add/update products.
-- User Management: 👥 Admins can update user data and delete users.
-- Review Management: 📜 Admins can view and delete product reviews.
-- Stock Management: 📉 Product stock is automatically decreased upon shipment.
+Create a root `.env` file if it does not already exist.
 
-## Sneak Peek of Admin Dashboard 🙈 :
-![Capture](https://user-images.githubusercontent.com/64949957/153995268-0cb769b9-e0ee-48ea-83c1-09b881df4101.PNG)
+You can use the example file as a template:
 
-<table>
-  <tr>
-    <td><img src="https://user-images.githubusercontent.com/64949957/153995383-367cbcc0-cce5-4523-a999-b8d92e44d6ab.jpg" alt="mockup" /></td>
-    <td><img src="https://user-images.githubusercontent.com/64949957/153995406-45e36cbc-8d42-4416-b23a-08ad592e4ebc.jpg" alt="mockups" /></td>
-  </tr>
-  <tr>
-    <td><img src="https://user-images.githubusercontent.com/64949957/153996560-bd631f30-46f0-4248-83b3-d8ce44a8f9e4.PNG" alt="mockup" /></td>
-    <td><img src="https://user-images.githubusercontent.com/64949957/153996577-57b1a82d-064a-49dc-9055-e2bceb854ab2.PNG" alt="mockups" /></td>
-  </tr>
-</table>
+```bash
+copy backend\config\config.env.example .env
+```
 
-<h2>📬 Contact</h2>
+Then update the values in `.env`:
 
-Feel free to reach me through the below handles if you'd like to contact me.
+```env
+PORT=4000
+MONGO_URI=mongodb://127.0.0.1:27017/flipkart
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRE=7d
+COOKIE_EXPIRE=5
+NODE_ENV=development
+```
 
-[![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jigar-sablee)
-[![instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/jigarsable.dev)
+For optional features like payments, email, and Cloudinary, fill in the keys shown in the example file.
+
+## 3) Start MongoDB
+
+Make sure MongoDB is running before starting the server.
+
+If you are using a local MongoDB instance, it usually starts on:
+
+```bash
+mongodb://127.0.0.1:27017
+```
+
+## 4) Run the backend server
+
+From the project root:
+
+```bash
+npm run server
+```
+
+This starts the Express API on:
+
+```text
+http://localhost:4000
+```
+
+If you want to run it directly with Node:
+
+```bash
+node server.js
+```
+
+## 5) Run the frontend app
+
+Open a second terminal and start the React frontend:
+
+```bash
+npm run frontend
+```
+
+Or directly:
+
+```bash
+npm start --prefix frontend
+```
+
+The frontend usually runs on:
+
+```text
+http://localhost:3000
+```
+
+## 6) Run both together
+
+To start both backend and frontend at the same time:
+
+```bash
+npm run dev
+```
+
+This uses the project scripts to launch the server and React app together.
+
+## 7) Seed the database (optional)
+
+If the project includes sample data, you can seed the database with:
+
+```bash
+npm run seed
+```
+
+To destroy seeded data:
+
+```bash
+npm run seed:destroy
+```
+
+## 8) Production build
+
+To create a production build of the frontend:
+
+```bash
+npm run build --prefix frontend
+```
+
+The backend is already set up to serve the frontend build when `NODE_ENV=production`.
+
+## Common issues
+
+- MongoDB connection error: check `MONGO_URI` and ensure MongoDB is running.
+- Port already in use: stop the process using the port or change `PORT` in `.env`.
+- Frontend API requests fail: ensure the backend is running on port `4000`.
+- Missing dependencies: run `npm install` and `npm install --prefix frontend` again.
+
+## Project structure
+
+```text
+mern-commerce/
+├── backend/
+├── frontend/
+├── .env
+├── package.json
+├── server.js
+├── server.cmd
+├── frontend.cmd
+├── README.md
+└── ...
+```
+
+## Default app URLs
+
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:4000
+
+If you want, I can also create a more polished README with screenshots, feature overview, and deployment steps.
